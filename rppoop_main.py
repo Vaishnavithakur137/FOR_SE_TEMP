@@ -81,6 +81,11 @@ def refreshData():
       tv.delete(item)
     fetch_records()
 
+def deleteRow():
+    global selected_rowid
+    data.removeRecord(selected_rowid)
+    refreshData()
+
 # create tkinter object
 ws = Tk()
 ws.title('112103147_EXPENSE_TRACKER')
@@ -179,6 +184,14 @@ update_btn = Button(
     font=f
 )
 
+del_btn = Button(
+    f1, 
+    text='Delete',
+    bg='grey69',
+    command=deleteRow,
+    font=f
+)
+
 # grid placement
 cur_date.grid(row=3, column=1, sticky=EW, padx=(10, 0))
 submit_btn.grid(row=0, column=2, sticky=EW, padx=(10, 0))
@@ -186,7 +199,7 @@ clr_btn.grid(row=1, column=2, sticky=EW, padx=(10, 0))
 quit_btn.grid(row=2, column=2, sticky=EW, padx=(10, 0))
 total_bal.grid(row=0, column=3, sticky=EW, padx=(10, 0))
 update_btn.grid(row=1, column=3, sticky=EW, padx=(10, 0))
-#del_btn.grid(row=2, column=3, sticky=EW, padx=(10, 0))
+del_btn.grid(row=2, column=3, sticky=EW, padx=(10, 0))
 
 # Treeview widget
 tv = ttk.Treeview(f2, columns=(1, 2, 3, 4), show='headings', height=8)
